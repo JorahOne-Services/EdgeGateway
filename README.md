@@ -1,129 +1,71 @@
 # EdgeGateway — Cloudflare WARP Edge Gateway
 
-**Version:** v1.0  
-**Status:** Active Development  
-**Repository:** https://github.com/OneByJorah/EdgeGateway
+**Provision Cloudflare WARP on Linux edge devices with automated install, registration, and local status monitoring.**
 
----
+![License](https://img.shields.io/badge/License-MIT-FFB300.svg?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active_Development-FFB300.svg?style=for-the-badge)
+![Language](https://img.shields.io/badge/Language-Bash-FFB300.svg?style=for-the-badge)
+![Stack](https://img.shields.io/badge/Stack-Cloudflare_WARP-FFB300.svg?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Linux-FFB300.svg?style=for-the-badge)
 
-## Table of Contents
+EdgeGateway provisions Cloudflare WARP on Linux edge devices and Raspberry Pi hosts to provide secure tunneling, DNS privacy, and outbound proxy functionality. A lightweight local dashboard exposes WARP state, and a two-step installer automates client deployment. The repository targets low-power ARM and x86 hosts requiring zero-trust egress.
 
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Technology Stack](#technology-stack)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Service Management](#service-management)
-- [Project Structure](#project-structure)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
-- [Author](#author)
+- Automated WARP client installation and registration.
+- Two-step POSIX-sh compatible bootstrap scripts.
+- Local HTML dashboard for connection state visibility.
+- Editable dashboard templates for custom slicing.
 
----
-
-## Overview
-
-EdgeGateway deploys Cloudflare WARP on edge devices (Raspberry Pi and Linux hosts) to provide secure tunneling, DNS privacy, and outbound proxy functionality. The repository includes a lightweight dashboard for monitoring WARP state and a two-step installer/bootstrap flow.
-
----
-
-## Architecture
-
-Host (Linux/arm64) → Cloudflare WARP client (`warp-svc`) → Internet. Dashboard template (`templates/dashboard.html`) provides local visibility into connection state.
-
-Setup stages:
-1. `01_install.sh` — installs the WARP client and dependencies.
-2. `02_configure.sh` — registers the client and configures routing/mode.
-
----
-
-## Technology Stack
-
-| Layer | Stack |
-|---|---|
-| Runtime | Linux (Ubuntu 22.04+, Raspberry Pi OS) |
-| Provisioning | Bash / Cloudflare WARP |
-| Frontend | HTML5 Dashboard (`templates/dashboard.html`) |
-| VCS | Git + GitHub (`github.com/OneByJorah/EdgeGateway`) |
-
----
-
-## Features
-
-- **One-click WARP setup**: install and register scripts included.
-- **Edge-friendly**: targets Raspberry Pi and low-power ARM hosts.
-- **Local dashboard**: lightweight HTML status view.
-- **Reusable templates**: `templates/dashboard.html` ready for extension.
-
----
-
-## Getting Started
-
-**Requirements:** Linux host (Ubuntu/Debian), `sudo`, Cloudflare WARP client package availability.
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/OneByJorah/EdgeGateway.git
-cd EdgeGateway
-
-# 2. Install WARP + dependencies (run as root)
-sudo ./01_install.sh
-
-# 3. Configure and register
-sudo ./02_configure.sh
-```
-
-> These scripts are intended for clean Debian/Ubuntu-based Linux systems.
-> Review scripts before running on production devices.
-
----
-
-## Service Management
-
-WARP runs as a system-managed service after registration. Check status:
-
-```bash
-sudo warp-cli status
-```
-
-Dashboard access depends on how the template is served (simple static hosting or integrated into a local web service).
-
----
-
-## Project Structure
+- Install WARP client and dependencies with `01_install.sh`.
+- Register device and configure routing mode with `02_configure.sh`.
+- Monitor connection state through the local HTML dashboard.
+- Extend dashboard templates without editing provisioning logic.
 
 ```
-EdgeGateway/
-├── 01_install.sh
-├── 02_configure.sh
-├── README.md
-├── screenshot-dashboard.png
-└── templates/
-    └── dashboard.html
+Host (Linux/arm64)
+  └── Cloudflare WARP client (warp-svc)
+        └── Internet
+Local browser → templates/dashboard.html → warp-cli status
 ```
 
+### Technology Stack
+
+- **Runtime**: Linux (Ubuntu 22.04+, Raspberry Pi OS)
+- **Provisioning**: Bash / Cloudflare WARP client
+- **Frontend**: HTML5 Dashboard (`templates/dashboard.html`)
+- **VCS**: Git + GitHub
+
+### Quickstart
+
+1. Clone the repository.
+   ```bash
+   git clone https://github.com/OneByJorah/EdgeGateway.git
+   cd EdgeGateway
+   ```
+2. Install the WARP client and dependencies.
+   ```bash
+   # Review scripts before executing on production devices.
+   sudo ./01_install.sh
+   ```
+3. Register and configure the client.
+   ```bash
+   sudo ./02_configure.sh
+   ```
+4. Verify WARP status.
+   ```bash
+   sudo warp-cli status
+   ```
+
+### Roadmap
+
+- [ ] Add systemd unit for automatic startup
+- [ ] Add health check endpoint for dashboard polling
+- [ ] Provide Ansible role for fleet deployment
+- [ ] Add automatic update mechanism for WARP client
+
+### License
+
+MIT © JorahOne, LLC
+
 ---
 
-## Screenshots
-> None required for provisioning repo; dashboard template is in `templates/dashboard.html`.
-
----
-
-## Contributing
-
-1. Create a feature branch off `main`.
-2. Keep provisioning scripts POSIX-sh compatible where possible.
-3. Submit a PR with description and screenshots for dashboard changes.
-
----
-
-## License
-
-MIT
-
----
-
-## Author
-
-Built by **Jhonattan L. Jimenez**.
+*Built by [JorahOne, LLC](https://github.com/JorahOne-Services) — network security, AD/M365, and infrastructure automation for SMBs and public sector.*
