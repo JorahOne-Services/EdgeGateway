@@ -1,129 +1,61 @@
-# EdgeGateway — Cloudflare WARP Edge Gateway
+<div align="center">
+  <img src="https://img.shields.io/badge/Raspberry%20Pi-A22846?style=for-the-badge&logo=raspberrypi&logoColor=white">
+  <img src="https://img.shields.io/badge/Cloudflare%20WARP-F38020?style=for-the-badge&logo=cloudflare&logoColor=white">
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+</div>
 
-**Version:** v1.0  
-**Status:** Active Development  
-**Repository:** https://github.com/OneByJorah/EdgeGateway
+<br>
 
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Technology Stack](#technology-stack)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Service Management](#service-management)
-- [Project Structure](#project-structure)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
-- [Author](#author)
+<div align="center">
+  <h1>🌐 EdgeGateway</h1>
+  <p><strong>Raspberry Pi Cloudflare WARP Gateway</strong></p>
+  <p>Secure tunneling, DNS privacy, and outbound proxy for edge devices</p>
+  <p>
+    <a href="#-features">Features</a> •
+    <a href="#-quick-start">Quick Start</a> •
+    <a href="#-installation">Installation</a>
+  </p>
+</div>
 
 ---
 
-## Overview
+## ✨ Features
 
-EdgeGateway deploys Cloudflare WARP on edge devices (Raspberry Pi and Linux hosts) to provide secure tunneling, DNS privacy, and outbound proxy functionality. The repository includes a lightweight dashboard for monitoring WARP state and a two-step installer/bootstrap flow.
+- **Cloudflare WARP** — Secure tunneling and DNS privacy
+- **Raspberry Pi Optimized** — Lightweight ARM architecture support
+- **Two-Step Provisioning** — Install, then configure
+- **Connection Dashboard** — Lightweight HTML dashboard for WARP status
+- **Outbound Proxy** — Route all traffic through WARP
 
----
-
-## Architecture
-
-Host (Linux/arm64) → Cloudflare WARP client (`warp-svc`) → Internet. Dashboard template (`templates/dashboard.html`) provides local visibility into connection state.
-
-Setup stages:
-1. `01_install.sh` — installs the WARP client and dependencies.
-2. `02_configure.sh` — registers the client and configures routing/mode.
-
----
-
-## Technology Stack
-
-| Layer | Stack |
-|---|---|
-| Runtime | Linux (Ubuntu 22.04+, Raspberry Pi OS) |
-| Provisioning | Bash / Cloudflare WARP |
-| Frontend | HTML5 Dashboard (`templates/dashboard.html`) |
-| VCS | Git + GitHub (`github.com/OneByJorah/EdgeGateway`) |
-
----
-
-## Features
-
-- **One-click WARP setup**: install and register scripts included.
-- **Edge-friendly**: targets Raspberry Pi and low-power ARM hosts.
-- **Local dashboard**: lightweight HTML status view.
-- **Reusable templates**: `templates/dashboard.html` ready for extension.
-
----
-
-## Getting Started
-
-**Requirements:** Linux host (Ubuntu/Debian), `sudo`, Cloudflare WARP client package availability.
+## 🚀 Quick Start
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/OneByJorah/EdgeGateway.git
 cd EdgeGateway
-
-# 2. Install WARP + dependencies (run as root)
+chmod +x 01_install.sh 02_configure.sh
 sudo ./01_install.sh
-
-# 3. Configure and register
 sudo ./02_configure.sh
 ```
 
-> These scripts are intended for clean Debian/Ubuntu-based Linux systems.
-> Review scripts before running on production devices.
+## 🔧 Installation Steps
+
+### 01_install.sh
+- Installs dependencies and Cloudflare WARP client
+- Configures system for ARM architecture
+
+### 02_configure.sh
+- Registers WARP client with Cloudflare
+- Sets up routing and DNS configuration
+- Enables WARP service
+
+## 📄 License
+
+MIT © Jhonattan L. Jimenez
 
 ---
 
-## Service Management
-
-WARP runs as a system-managed service after registration. Check status:
-
-```bash
-sudo warp-cli status
-```
-
-Dashboard access depends on how the template is served (simple static hosting or integrated into a local web service).
-
----
-
-## Project Structure
-
-```
-EdgeGateway/
-├── 01_install.sh
-├── 02_configure.sh
-├── README.md
-├── screenshot-dashboard.png
-└── templates/
-    └── dashboard.html
-```
-
----
-
-## Screenshots
-> None required for provisioning repo; dashboard template is in `templates/dashboard.html`.
-
----
-
-## Contributing
-
-1. Create a feature branch off `main`.
-2. Keep provisioning scripts POSIX-sh compatible where possible.
-3. Submit a PR with description and screenshots for dashboard changes.
-
----
-
-## License
-
-MIT
-
----
-
-## Author
-
-Built by **Jhonattan L. Jimenez**.
+<div align="center">
+  <p>🛡️ Secure edge networking, simplified</p>
+  <p><a href="https://github.com/OneByJorah">@OneByJorah</a></p>
+</div>
