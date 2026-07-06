@@ -85,16 +85,13 @@ ok "Cloudflare WARP installed"
 info "Setting up Python environment..."
 python3 -m venv /opt/EdgeGateway/venv
 /opt/EdgeGateway/venv/bin/pip install -q --upgrade pip
-/opt/EdgeGateway/venv/bin/pip install -q \
-    flask flask-socketio \
-    python-telegram-bot==20.8 \
-    psutil requests \
-    gunicorn eventlet
+/opt/EdgeGateway/venv/bin/pip install -q -r /opt/EdgeGateway/requirements.txt
 ok "Python environment ready"
 
 # ── Copy app files ────────────────────────────────────────
 info "Installing gateway app files..."
 mkdir -p /opt/EdgeGateway/{templates,static}
+cp requirements.txt /opt/EdgeGateway/requirements.txt
 # (Files will be copied by 02_configure.sh)
 
 # ── Enable IP forwarding ──────────────────────────────────
