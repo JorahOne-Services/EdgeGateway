@@ -59,9 +59,9 @@ sudo ./02_configure.sh
 After installation, open the status dashboard:
 
 ```bash
-# The dashboard is served on port 8080
+# The dashboard is served on port 5000
 # Open in your browser:
-# http://<raspberry-pi-ip>:8080
+# http://<raspberry-pi-ip>:5000
 ```
 
 ## 📁 Project Structure
