@@ -8,7 +8,7 @@
 <br>
 
 <div align="center">
-  <h1>🌐 EdgeGateway</h1>
+  <h1>🌐 WarpGate</h1>
   <p><strong>Raspberry Pi Cloudflare WARP Gateway</strong></p>
   <p>Secure tunneling, DNS privacy, and outbound proxy for edge devices — one-command setup</p>
   <p>
@@ -44,8 +44,8 @@
 > ⚠️ **IMPORTANT**: Before running the installer, edit `01_install.sh` and change the default AP password (`AP_PASS="SuperSecret99"`). The default is a placeholder and MUST be changed for any production or public deployment.
 
 ```bash
-git clone https://github.com/OneByJorah/EdgeGateway.git
-cd EdgeGateway
+git clone https://github.com/OneByJorah/WarpGate.git
+cd WarpGate
 chmod +x 01_install.sh 02_configure.sh
 sudo ./01_install.sh
 sudo ./02_configure.sh
@@ -78,7 +78,7 @@ After installation, open the status dashboard:
 ## 📁 Project Structure
 
 ```
-EdgeGateway/
+WarpGate/
 ├── 01_install.sh          # System setup & WARP installation
 ├── 02_configure.sh        # WARP configuration & registration
 ├── templates/             # Dashboard HTML templates

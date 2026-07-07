@@ -1,6 +1,6 @@
 # INTENT.md — J1-PIPELINE Phase -1 (ORACLE)
 
-**Repository:** `OneByJorah/EdgeGateway`
+**Repository:** `OneByJorah/WarpGate`
 **Analysis Date:** 2026-07-05
 **Analyst:** J1-PIPELINE ORACLE (read-only)
 **Status:** Intent Reconstructed
@@ -9,7 +9,7 @@
 
 ## What This System Does
 
-**EdgeGateway** is a two-script provisioning system that transforms a Raspberry Pi (or any Debian/Ubuntu ARM host) into a self-contained secure edge gateway. It combines four subsystems into a single, repeatable deployment:
+**WarpGate** is a two-script provisioning system that transforms a Raspberry Pi (or any Debian/Ubuntu ARM host) into a self-contained secure edge gateway. It combines four subsystems into a single, repeatable deployment:
 
 | Subsystem | Role | Technology |
 |-----------|------|------------|
@@ -67,7 +67,7 @@
 
 ### Operational Role
 
-EdgeGateway is a **turnkey edge appliance** — deploy it on a Raspberry Pi with two commands, and it becomes a privacy-respecting WiFi hotspot that tunnels all traffic through Cloudflare WARP. It is consumed by:
+WarpGate is a **turnkey edge appliance** — deploy it on a Raspberry Pi with two commands, and it becomes a privacy-respecting WiFi hotspot that tunnels all traffic through Cloudflare WARP. It is consumed by:
 
 - **End users** connecting to the `PiGateway` SSID — they get internet with DNS privacy (1.1.1.1) and encrypted outbound tunneling
 - **The Pi's admin** — who monitors and controls the gateway via the web dashboard or Telegram bot
@@ -98,26 +98,26 @@ This is error-prone, time-consuming, and produces a fragile, non-repeatable conf
 - **DIY scripts on GitHub**: Fragmented — one repo for hostapd, another for VPN, another for monitoring. No unified, tested, two-step provisioning flow.
 - **Cloudflare WARP standalone**: No WiFi AP integration, no dashboard, no remote management.
 
-EdgeGateway fills the gap: a **unified, two-command, repeatable provisioning system** that combines all of these into a single coherent deployment.
+WarpGate fills the gap: a **unified, two-command, repeatable provisioning system** that combines all of these into a single coherent deployment.
 
 ### What Triggered Development
 
 The initial commit (`b176ed4` — "Initial commit: Pi Gateway installer scripts + docs") and the project's evolution show a clear trajectory:
 
-1. **Initial need** (June 15, 2026): A simple Pi-based gateway with WARP tunneling. The initial commit included both root-level files AND a `pi-router/` subdirectory with duplicate files — suggesting the project was originally named `pi-router` and later renamed to `EdgeGateway`.
+1. **Initial need** (June 15, 2026): A simple Pi-based gateway with WARP tunneling. The initial commit included both root-level files AND a `pi-router/` subdirectory with duplicate files — suggesting the project was originally named `pi-router` and later renamed to `WarpGate`.
 2. **Security hardening** (June 15, 2026): Cleanup pass (`10839ba` — "Fix: full project cleanup and security hardening").
 3. **Dashboard** (June 15, 2026): Real-time monitoring UI (`41a7f55` — "Add dashboard screenshot").
-4. **Repo rename** (June 17, 2026): Migrated from `pi-router` to `EdgeGateway` branding across three commits (`3bed448` → `f8601ee` → `8cf0248`).
+4. **Repo rename** (June 17, 2026): Migrated from `pi-router` to `WarpGate` branding across three commits (`3bed448` → `f8601ee` → `8cf0248`).
 5. **Documentation maturity** (June 17–July 4, 2026): Multiple README iterations refining the narrative, aligning to J1 brand standard, and documenting host requirements.
 6. **Code quality** (July 4, 2026): Ruff auto-fixes and portfolio standardization (`1619a2b`).
 7. **Dependency bumps** (July 4, 2026): Dependabot PRs for `actions/checkout` and `github/codeql-action`.
-8. **Security audit** (July 5, 2026): Email reference sanitization (`6401607` — "audit(EdgeGateway): sanitize email references").
+8. **Security audit** (July 5, 2026): Email reference sanitization (`6401607` — "audit(WarpGate): sanitize email references").
 
 The project was built iteratively, starting from a working installer and layering on observability (dashboard), remote management (Telegram bot), reliability (WARP watchdog), and security hardening over time.
 
 ### Ecosystem Fit
 
-EdgeGateway is part of the **OneByJorah** portfolio of infrastructure tools. It complements:
+WarpGate is part of the **OneByJorah** portfolio of infrastructure tools. It complements:
 
 - **JorahOne's edge computing strategy**: Lightweight, ARM-optimized, privacy-first networking for edge deployments
 - **The broader ecosystem**: Sits alongside other JorahOne repos as a self-contained, deployable component — not a library or framework, but a turnkey appliance
@@ -125,7 +125,7 @@ EdgeGateway is part of the **OneByJorah** portfolio of infrastructure tools. It 
 
 ```
 OneByJorah Ecosystem
-├── EdgeGateway          ← Turnkey Pi-based WARP gateway appliance
+├── WarpGate          ← Turnkey Pi-based WARP gateway appliance
 ├── EdgeRouter           ← (sibling: router-focused infrastructure)
 └── [other J1 repos]    ← Self-contained deployable components
 ```
@@ -152,9 +152,9 @@ Evidence:
 
 1. **Two-phase provisioning** (`01_install.sh` → `02_configure.sh`): Separates system-level installation (requires reboot) from application deployment. User can edit `config.env` between phases. This is a deliberate UX choice — the first script handles all the heavy system changes, the second deploys the application layer.
 
-2. **Python venv isolation**: Dashboard and bot run in `/opt/EdgeGateway/venv` — no system Python contamination. All dependencies (Flask, SocketIO, python-telegram-bot, psutil, gunicorn, eventlet) are isolated.
+2. **Python venv isolation**: Dashboard and bot run in `/opt/WarpGate/venv` — no system Python contamination. All dependencies (Flask, SocketIO, python-telegram-bot, psutil, gunicorn, eventlet) are isolated.
 
-3. **Config.env pattern**: All configuration centralized in `/etc/EdgeGateway/config.env` — single source of truth, sourced by both systemd units and scripts. No scattered config files.
+3. **Config.env pattern**: All configuration centralized in `/etc/WarpGate/config.env` — single source of truth, sourced by both systemd units and scripts. No scattered config files.
 
 4. **WARP watchdog**: Cron-based self-healing — if the tunnel drops, it reconnects automatically within 60 seconds. This is critical for a gateway that must stay online.
 
@@ -173,7 +173,7 @@ Evidence:
 ## Repository Structure
 
 ```
-EdgeGateway/
+WarpGate/
 ├── 01_install.sh              # Step 1: System + WARP + AP + firewall install
 ├── 02_configure.sh            # Step 2: Dashboard + Telegram bot + systemd units
 ├── templates/
@@ -205,12 +205,12 @@ EdgeGateway/
 
 ## Notes
 
-- **Repo rename**: The project was originally named `pi-router` (evidenced by the initial commit `b176ed4` which included a `pi-router/` subdirectory with duplicate files). It was renamed to `EdgeGateway` on June 17, 2026 across three commits. The `pi-router/` directory was subsequently removed.
+- **Repo rename**: The project was originally named `pi-router` (evidenced by the initial commit `b176ed4` which included a `pi-router/` subdirectory with duplicate files). It was renamed to `WarpGate` on June 17, 2026 across three commits. The `pi-router/` directory was subsequently removed.
 - **No git tags**: CHANGELOG.md declares v1.0.0 but no corresponding git tag exists. This is a minor release-process gap.
 - **No `docs/` directory**: All documentation lives in the README. No separate docs folder exists.
 - **No test files**: No test suite exists — deployment is the only validation path. The ROADMAP.md lists "Test coverage expansion" as a current goal.
 - **Dependabot ecosystem**: Correctly configured for `github-actions` only — no ecosystem mismatch (the repo has no `package.json` or `Dockerfile`).
-- **Security audit history**: Two security-focused commits in the git log — `10839ba` ("Fix: full project cleanup and security hardening") and `6401607` ("audit(EdgeGateway): sanitize email references"). This is a positive maturity signal.
+- **Security audit history**: Two security-focused commits in the git log — `10839ba` ("Fix: full project cleanup and security hardening") and `6401607` ("audit(WarpGate): sanitize email references"). This is a positive maturity signal.
 - **Default credentials**: Default AP password (`SuperSecret99`) is a placeholder — must be changed before production use. The script explicitly comments "← Change this!".
 - **Single-point-of-failure**: The Raspberry Pi itself is the gateway — if it goes down, all AP clients lose internet. No HA/failover mechanism.
 - **WARP dependency**: The system's privacy guarantees depend entirely on Cloudflare WARP availability. The fallback (raw WAN) provides no privacy.

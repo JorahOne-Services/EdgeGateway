@@ -1,5 +1,5 @@
-# EdgeGateway Python dependencies
-# Install in a virtual environment: python3 -m venv /opt/EdgeGateway/venv
+# WarpGate Python dependencies
+# Install in a virtual environment: python3 -m venv /opt/WarpGate/venv
 # Then: pip install -r requirements.txt
 
 flask>=3.0,<4.0
