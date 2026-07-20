@@ -1,4 +1,4 @@
-# EdgeGateway — Docker-based deployment for dashboard only
+# WarpGate — Docker-based deployment for dashboard only
 # Note: The full EdgeGateway (WiFi AP, WARP tunnel, iptables) requires
 # Raspberry Pi hardware and cannot be fully containerized.
 # This Dockerfile provides the dashboard component for remote monitoring.
@@ -22,6 +22,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # App code
 COPY dashboard.py .
+COPY gw-stats.sh /usr/local/bin/gw-stats.sh
+RUN chmod +x /usr/local/bin/gw-stats.sh
 COPY templates/ templates/
 
 # Healthcheck

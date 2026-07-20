@@ -2,6 +2,7 @@
   "runtime": "bash + static HTML",
   "build_method": "bash scripts + Cloudflare WARP registration",
   "entry_point": "01_install.sh, 02_configure.sh",
+ "name": "WarpGate",
   "dependencies": ["sudo", "cloudflare-warp", "linux host (Ubuntu/Debian)"],
   "ports": [],
   "deploy_steps": [

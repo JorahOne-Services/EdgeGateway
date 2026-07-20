@@ -1,4 +1,4 @@
-# EdgeGateway — Python dependencies (dashboard only)
+# WarpGate — Python dependencies (dashboard only)
 flask==3.0.0
 flask-socketio==5.3.6
 gunicorn==21.2.0
