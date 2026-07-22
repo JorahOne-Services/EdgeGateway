@@ -1,91 +1,48 @@
-<div align="center">
-  <img src="https://img.shields.io/badge/Raspberry%20Pi-A22846?style=for-the-badge&logo=raspberrypi&logoColor=white">
-  <img src="https://img.shields.io/badge/Cloudflare%20WARP-F38020?style=for-the-badge&logo=cloudflare&logoColor=white">
-  <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black">
-  <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge">
-</div>
+# WarpGate (EdgeGateway)
 
-<br>
+Raspberry Pi Cloudflare WARP gateway — secure tunneling, DNS privacy, and outbound proxy for edge devices.
 
-<div align="center">
-  <h1>🌐 EdgeGateway</h1>
-  <p><strong>Raspberry Pi Cloudflare WARP Gateway</strong></p>
-  <p>Secure tunneling, DNS privacy, and outbound proxy for edge devices — one-command setup</p>
-  <p>
-    <a href="#-features">Features</a> •
-    <a href="#-quick-start">Quick Start</a> •
-    <a href="#-installation">Installation</a> •
-    <a href="#-dashboard">Dashboard</a>
-  </p>
-</div>
+![status](https://img.shields.io/badge/status-active-FFB300?style=flat-square)
+![platform](https://img.shields.io/badge/platform-raspberry%20pi-0d0d0c?style=flat-square)
+![license](https://img.shields.io/badge/license-MIT-FFB300?style=flat-square)
 
----
+## Overview
 
-## 📸 Screenshot
+WarpGate (branded "EdgeGateway") is a self-hosted Cloudflare WARP gateway optimized for Raspberry Pi. It provides secure tunneling, DNS-over-HTTPS privacy, and outbound proxy for edge devices through a two-step provisioning process. A lightweight Flask dashboard monitors WARP connection status in real time.
 
-This is a CLI/backend-only tool. No screenshots available.
+## Features
 
-## ✨ Features
+- Cloudflare WARP — secure tunneling and DNS privacy for all traffic
+- Raspberry Pi optimized — lightweight ARM architecture support
+- Two-step provisioning — install dependencies, then configure WARP
+- Connection dashboard — Flask + SocketIO for real-time WARP status monitoring
+- Outbound proxy — route all traffic through Cloudflare WARP
+- Privacy-first — DNS over HTTPS with Cloudflare 1.1.1.1
 
-- **Cloudflare WARP** — Secure tunneling and DNS privacy for all traffic
-- **Raspberry Pi Optimized** — Lightweight ARM architecture support
-- **Two-Step Provisioning** — Install dependencies, then configure WARP
-- **Connection Dashboard** — Lightweight HTML dashboard for WARP status monitoring
-- **Outbound Proxy** — Route all traffic through Cloudflare WARP for privacy
-- **Privacy-First** — DNS over HTTPS with Cloudflare's 1.1.1.1
+## Architecture / Tech Stack
 
-## 🚀 Quick Start
+- **Gateway**: Cloudflare WARP client
+- **Dashboard**: Flask + Flask-SocketIO
+- **Platform**: Raspberry Pi (ARM), Linux
+- **DNS**: Cloudflare 1.1.1.1 (DoH)
+
+## Installation
 
 ```bash
-git clone https://github.com/OneByJorah/EdgeGateway.git
-cd EdgeGateway
-chmod +x 01_install.sh 02_configure.sh
-sudo ./01_install.sh
-sudo ./02_configure.sh
+git clone https://github.com/OneByJorah/WarpGate.git
+cd WarpGate
+
+sudo ./01_install.sh   # Install dependencies + WARP client
+sudo ./02_configure.sh # Register, configure routing, start service
 ```
 
-## 🔧 Installation
+## Dashboard
 
-### Step 1: Install (01_install.sh)
+After installation, access the dashboard at `http://<pi-ip>:5000` to monitor WARP connection status, latency, and traffic.
 
-- Installs system dependencies
-- Downloads and installs Cloudflare WARP client
-- Configures system for ARM architecture
+## License
 
-### Step 2: Configure (02_configure.sh)
-
-- Registers WARP client with Cloudflare
-- Sets up routing and DNS configuration
-- Enables and starts WARP service
-
-## 📊 Dashboard
-
-After installation, open the status dashboard:
-
-```bash
-# The dashboard is served on port 8080
-# Open in your browser:
-# http://<raspberry-pi-ip>:8080
-```
-
-## 📁 Project Structure
-
-```
-EdgeGateway/
-├── 01_install.sh          # System setup & WARP installation
-├── 02_configure.sh        # WARP configuration & registration
-├── templates/             # Dashboard HTML templates
-├── screenshot-dashboard.png
-└── README.md
-```
-
-## 📄 License
-
-MIT © Jhonattan L. Jimenez
+MIT — see [LICENSE](LICENSE).
 
 ---
-
-<div align="center">
-  <p>🛡️ Secure edge networking, simplified for Raspberry Pi</p>
-  <p><a href="https://github.com/OneByJorah">@OneByJorah</a></p>
-</div>
+Part of the JorahOne / J1 ecosystem — secure edge networking for self-hosted infrastructure.
