@@ -1,29 +1,24 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/Cloudflare%20WARP-F38020?style=for-the-badge&logo=cloudflare&logoColor=white">
-  <img src="https://img.shields.io/badge/Raspberry%20Pi-A22866?style=for-the-badge&logo=raspberry-pi&logoColor=white">
-  <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge">
-</div>
 
-<br>
+![WarpGate banner](docs/assets/banner.svg)
 
-<div align="center">
-  <h1>WarpGate</h1>
-  <p><strong>Raspberry Pi Cloudflare WARP Gateway</strong></p>
-  <p>Secure tunneling, DNS privacy, and outbound proxy for edge devices.</p>
-  <p>
-    <a href="#features">Features</a> •
-    <a href="#quick-start">Quick Start</a> •
-    <a href="#configuration">Configuration</a> •
-    <a href="#contributing">Contributing</a>
-  </p>
+# WarpGate
+
+Raspberry Pi Cloudflare WARP gateway
+
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
+![Language](https://img.shields.io/badge/language-Shell-blue)
 </div>
 
 ---
 
-## Screenshot
+<p align="center">
+  <img src="docs/assets/screenshot.png" alt="WarpGate preview" width="90%">
+</p>
 
-![WarpGate Architecture](docs/screenshot.png)
-*Cloudflare WARP gateway running on Raspberry Pi.*
+<br>
+
+---
 
 ## Features
 
@@ -101,7 +96,18 @@ MIT © Jhonattan L. Jimenez
 
 ---
 
-<div align="center">
-  <p>Cloudflare WARP gateway for Raspberry Pi.</p>
-  <p><a href="https://github.com/OneByJorah">@OneByJorah</a></p>
-</div>
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). All contributions follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## 🔒 Security
+
+Found a vulnerability? Please follow our [Security Policy](SECURITY.md) and report privately to `security@jorahone.com`.
+
+## 📄 License
+
+[MIT License](LICENSE) © Jhonattan L. Jimenez (OneByJorah)
+
+---
+
+<p align="center">Built with 🌴 by <a href="https://github.com/OneByJorah">OneByJorah</a> · <a href="https://jorahone.com">jorahone.com</a></p>
